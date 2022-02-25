@@ -7,7 +7,7 @@ import Watch from "./pages/watch/Watch";
 const App = () => {
   return (
     <div>
-      <Login />
+      <Home />
     </div>
   );
 };
