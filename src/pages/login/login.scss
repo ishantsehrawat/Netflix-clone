@@ -3,8 +3,9 @@
   height: 100vh;
   background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 100%
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.6) 100%
     ),
     url("http://mppmduse2pmpovwapp.azurewebsites.net/wp-content/uploads/2019/09/netflix-background-9.jpg");
   background-size: cover;
@@ -36,28 +37,31 @@
 
     form {
       width: 300px;
-      height: 300px;
-      padding: 30px;
+      margin-top: 70px;
+      height: 400px;
+      padding: 50px;
       border-radius: 5px;
-      background-color: var(--main-color);
+      background-color: #0b0b0bea;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
 
       input {
+        margin-top: 5px;
         height: 40px;
         border-radius: 5px;
         color: white;
-        background-color: gray;
+        background-color: rgb(59, 59, 59);
         padding-left: 10px;
 
         &::placeholder {
-          color: lightgray;
+          color: gray;
         }
       }
 
       button {
         height: 40px;
+        margin-top: 40px;
         border-radius: 5px;
         background-color: red;
         color: white;
@@ -68,16 +72,21 @@
       }
 
       span {
-        color: lightgray;
+        margin-top: 50px;
+        color: gray;
 
         b {
           color: white;
+          font-weight: normal;
           cursor: pointer;
         }
       }
       small {
+        color: gray;
         b {
           cursor: pointer;
+          font-weight: normal;
+          color: rgb(48, 48, 236);
         }
       }
     }
