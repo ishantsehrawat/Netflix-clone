@@ -1,12 +1,33 @@
 import { InfoOutlined, PlayArrow } from "@material-ui/icons";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 import "./featured.scss";
 
 export default function Featured(type) {
+  const [content, setContent] = useState({});
+  useEffect(() => {
+    const getRandomContent = async () => {
+      try {
+        const res = await axios.get(`/movies/random?type=${type}`, {
+          headers: {
+            token:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMThiMWM4YmFkZGU5MzNkNmE1Yjg1NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjA1OTg2NiwiZXhwIjoxNjQ2NDkxODY2fQ.AYFVgxbSWMA9jU5u3FPAM_XigfduTJg8tE3NDkOTick",
+          },
+        });
+        setContent(res.data[0]);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getRandomContent();
+  }, [type]);
+  console.log(content);
   return (
     <div className="featured">
-      {type && (
+      {type.type.type && (
         <div className="category">
-          <span>{type === "movie" ? "Movies" : "Series"}</span>
+          <span>{type.type.type === "movies" ? "Movies" : "Series"}</span>
           <select name="genre" id="genre">
             <option>Genre</option>
             <option value="adventure">Adventure</option>
@@ -25,22 +46,10 @@ export default function Featured(type) {
           </select>
         </div>
       )}
-      <img
-        width="100%"
-        src="https://rukminim1.flixcart.com/image/416/416/juk4gi80/poster/h/c/q/large-newposter8930-wall-poster-movies-the-matrix-poster-large-original-imaf5tgtzvb8pdpc.jpeg?q=70"
-        alt=""
-      />
+      <img width="100%" src={content.img} alt="" />
       <div className="info">
-        <img
-          src="https://occ-0-1432-1433.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABUZdeG1DrMstq-YKHZ-dA-cx2uQN_YbCYx7RABDk0y7F8ZK6nzgCz4bp5qJVgMizPbVpIvXrd4xMBQAuNe0xmuW2WjoeGMDn1cFO.webp?r=df1"
-          alt=""
-        />
-        <span className="desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-          assumenda eum explicabo esse fuga velit a consequuntur optio ducimus
-          sed quas quasi laboriosam dignissimos saepe quisquam accusantium,
-          odio, eaque sequi?
-        </span>
+        <img src={content.imgtitle} alt="" />
+        <span className="desc">{content.desc}</span>
         <div className="buttons">
           <button className="play">
             <PlayArrow />
