@@ -5,6 +5,7 @@ import axios from "axios";
 import "./featured.scss";
 
 export default function Featured(type) {
+  // console.log(type);
   const [content, setContent] = useState({});
   useEffect(() => {
     const getRandomContent = async () => {
@@ -22,13 +23,19 @@ export default function Featured(type) {
     };
     getRandomContent();
   }, [type]);
-  console.log(content);
+
+  // console.log(content);
+  // console.log(type);
   return (
     <div className="featured">
       {type.type.type && (
         <div className="category">
-          <span>{type.type.type === "movies" ? "Movies" : "Series"}</span>
-          <select name="genre" id="genre">
+          <span>{type?.type?.type === "movies" ? "Movies" : "Series"}</span>
+          <select
+            name="genre"
+            id="genre"
+            // onClick={(e) => setGenre(e.target.value)}
+          >
             <option>Genre</option>
             <option value="adventure">Adventure</option>
             <option value="comedy">Comedy</option>

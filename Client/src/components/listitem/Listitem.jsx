@@ -22,13 +22,17 @@ export default function Listitem({ index, item }) {
               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMThiMWM4YmFkZGU5MzNkNmE1Yjg1NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjA1OTg2NiwiZXhwIjoxNjQ2NDkxODY2fQ.AYFVgxbSWMA9jU5u3FPAM_XigfduTJg8tE3NDkOTick",
           },
         });
-        setMovie(res.data);
+        if (res.data !== null) {
+          setMovie(res.data);
+        }
       } catch (err) {
         console.log(err);
       }
     };
     getMovie();
   }, [item]);
+
+  console.log(movie.img);
 
   return (
     <Link to={{ pathname: "/watch", movie: movie }}>

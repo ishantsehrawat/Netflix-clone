@@ -9,7 +9,7 @@ import "./home.scss";
 const Home = (type) => {
   const [lists, setLists] = useState([]);
   const [genre, setGenre] = useState(null);
-
+  console.log(type);
   useEffect(() => {
     const getRandomLists = async () => {
       try {
@@ -35,7 +35,7 @@ const Home = (type) => {
   return (
     <div className="home">
       <Navbar />
-      <Featured type={type} />
+      <Featured type={type} setGenre={setGenre} />
       {lists.map((list) => (
         <List list={list} />
       ))}
